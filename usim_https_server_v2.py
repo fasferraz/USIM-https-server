@@ -51,7 +51,7 @@ from smartcard.util import toHexString,toBytes
 from binascii import hexlify, unhexlify
 
 #path for the server.pem file:
-PATH = '/home/fabricio/Documents/https/server.pem'
+PATH = '/home/user/https/server.pem'
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
