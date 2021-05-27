@@ -66,3 +66,58 @@ openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
 ```
 
 
+
+Updated Version:
+---------------
+
+Added a third API operation to allow sending/receiving APDU commands with the USIM:
+
+
+- get the DATA, SW1 and SW2 response for a given APDU:
+  
+  Example:
+  - https://<domain | IP address>/?type=apdu&hex=00A40000023F00
+
+```
+ {
+     "data": "",
+     "sw1": "90",
+     "sw2": "00"
+ }
+```
+
+Since this operation needs a context to be mantained with the USIM, We need to establish the connection, and use the same connection for all API calls, instead of a on-demand model, like the original version.
+
+That's the reason why I choose to keep the two versions.
+
+Example of IMSI retrieval through APDU communication:
+
+```
+fabricio@ubuntu:~$ curl -k "https://localhost/?type=apdu&hex=00A40000023F00"
+{
+	"data": "",
+	"sw1": "90",
+	"sw2": "00"
+}
+
+fabricio@ubuntu:~$ curl -k "https://localhost/?type=apdu&hex=00A40000027F20"
+{
+	"data": "",
+	"sw1": "90",
+	"sw2": "00"
+}
+
+fabricio@ubuntu:~$ curl -k "https://localhost/?type=apdu&hex=00A40000026F07"
+{
+	"data": "",
+	"sw1": "90",
+	"sw2": "00"
+}
+
+fabricio@ubuntu:~$ curl -k "https://localhost/?type=apdu&hex=00B0000009"
+{
+	"data": "082986609410005040",
+	"sw1": "90",
+	"sw2": "00"
+}
+```
