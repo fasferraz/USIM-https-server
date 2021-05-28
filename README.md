@@ -86,7 +86,7 @@ Added a third API operation to allow sending/receiving APDU commands with the US
  }
 ```
 
-Since this operation needs a context to be mantained with the USIM, We need to establish the connection, and use the same connection for all API calls, instead of a on-demand model, like the original version.
+Since this operation needs a context to be mantained with the USIM, we need to establish the connection, and use the same connection for all API calls, instead of an on-demand model, like the original version.
 
 That's the reason why I choose to keep the two versions.
 
