@@ -67,8 +67,8 @@ openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
 
 
 
-Updated Version:
----------------
+Updated Version (2):
+-------------------
 
 Added a third API operation to allow sending/receiving APDU commands with the USIM:
 
@@ -121,3 +121,9 @@ fabricio@ubuntu:~$ curl -k "https://localhost/?type=apdu&hex=00B0000009"
 	"sw2": "00"
 }
 ```
+
+
+Updated Version (3):
+-------------------
+
+Added a 3rd version (with only smartcard reader support), but using the card.USIM module (https://github.com/mitshell/card) because it handles all types of cards, including blank USIM cards bought in eBay or AliExprees, which was not the case with my other USIM interaction functions used in version 1 and 2.
