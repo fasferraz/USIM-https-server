@@ -77,8 +77,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             pass
 
     def do_GET(self):
-        #try:
-        if True:
+        try:
             params = {k: v[0] for k, v in parse_qs(urlsplit(self.path).query).items()}
             if params['type'] == 'imsi':
                 imsi = return_imsi(self.reader)
@@ -92,8 +91,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.API_Ok(message)
             else:
                 self.API_Error(501, "Error")             
-        #except:
-        #    self.API_Error(501, "Error")                    
+        except:
+            self.API_Error(501, "Error")                    
         
 
 #abstraction functions
